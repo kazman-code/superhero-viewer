@@ -1,3 +1,20 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Comic Viewer</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-item routerLink="/home">Home</ion-item>
+      <ion-item routerLink="/comics">Comics</ion-item>
+      <ion-item routerLink="/favourites">Favourites</ion-item>
+      <ion-item routerLink="/settings">Settings</ion-item>
+    </ion-content>
+  </ion-menu>
+
+  <div id="main-content">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
 </ion-app>
