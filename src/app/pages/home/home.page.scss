@@ -12,35 +12,42 @@
   text-align: center;
 }
 
+
 .character-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  justify-content: center;
 }
+
 
 .character-card {
   background: #ffffff;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 14px;
+  padding: 12px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
   transition: transform 0.2s ease;
   cursor: pointer;
 }
 
 .character-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
+
 
 .character-card img {
   width: 100%;
-  height: 100px;
+  aspect-ratio: 4 / 5;   
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
+  display: block;
 }
 
+/* Name styling */
 .character-card p {
-  margin-top: 8px;
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 15px;
   font-weight: 600;
+  color: #222;
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonSearchbar, IonCard, IonItem, IonAvatar, IonLabel } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonToolbar, IonTitle, IonSearchbar, IonCard, IonItem, IonAvatar, IonLabel, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
+
 
 import { Comic } from '../../services/comic.service';
 
@@ -13,7 +15,7 @@ import { Comic } from '../../services/comic.service';
   templateUrl: './heroes.page.html',
   styleUrls: ['./heroes.page.scss'],
   imports: [
-    IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, RouterLink, FormsModule, IonSearchbar, IonCard, IonItem, IonAvatar, IonLabel ]
+    IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, RouterLink, FormsModule, IonSearchbar, IonCard, IonItem, IonAvatar, IonLabel, IonButtons, IonBackButton ]
 })
 export class HeroesPage implements OnInit {
   comics: any[] = [];
@@ -41,7 +43,14 @@ export class HeroesPage implements OnInit {
 }
 
 
-  openDetail(id: number) {
-    this.router.navigate(['/hero-detail', id]);
-  }
+openDetail(id: number) {
+  this.vibrate();
+  this.router.navigate(['/hero-detail', id]);
+}
+
+async vibrate() {
+  await Haptics.impact({ style: ImpactStyle.Medium });
+}
+
+
 }

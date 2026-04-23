@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonToolbar, IonTitle, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButtons, IonBackButton} from '@ionic/angular/standalone';
 import { Comic } from '../../services/comic.service';
 import { FavouritesService } from '../../services/favourites.service';
+import { Share } from '@capacitor/share';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
+
+
 
 
 
@@ -14,7 +18,7 @@ import { FavouritesService } from '../../services/favourites.service';
   standalone: true,
   templateUrl: './hero-detail.page.html',
   styleUrls: ['./hero-detail.page.scss'],
-  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonButton, CommonModule, IonCard, IonCardHeader, IonCardTitle, IonCardContent ]
+  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonButton, CommonModule, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonBackButton, IonButtons ]
 })
 export class HeroDetailPage implements OnInit {
   hero: any;
@@ -52,6 +56,19 @@ export class HeroDetailPage implements OnInit {
   } else {
     this.favs.add(this.hero);
   }
+}
+
+async shareHero() {
+  await Share.share({
+    title: this.hero.name,
+    text: `Check out this hero: ${this.hero.name}`,
+    url: this.hero.images.lg,
+    dialogTitle: 'Share Hero'
+  });
+}
+
+async vibrate() {
+  await Haptics.impact({ style: ImpactStyle.Medium });
 }
 
 
